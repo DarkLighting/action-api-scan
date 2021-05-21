@@ -3816,18 +3816,9 @@ async function run() {
         console.log('starting the program');
         console.log('github run id :' + currentRunnerID);
 
-        let plugins = [];
-        if (rulesFileLocation) {
-            plugins = await common.helper.processLineByLine(`${workspace}/${rulesFileLocation}`);
-        }
-
         await exec.exec(`docker pull ${docker_name} -q`);
         let command = (`docker run --user root -v ${workspace}:/zap/wrk/:rw --network="host" ` +
             `-t ${docker_name} zap-api-scan.py -t ${api_definition} -f ${format} -J ${jsonReportName} -w ${mdReportName}  -r ${htmlReportName} ${cmdOptions}`);
-
-        if (plugins.length !== 0) {
-            command = command + ` -c ${rulesFileLocation}`
-        }
 
         try {
             await exec.exec(command);

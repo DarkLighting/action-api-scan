@@ -1,10 +1,9 @@
-# ZAP Action Full Scan
+# ZAP Action API Scan
 
-A GitHub Action for running the OWASP ZAP [Full Scan](https://www.zaproxy.org/docs/docker/full-scan/) to perform
+A GitHub Action for running the OWASP ZAP [API Scan](https://www.zaproxy.org/docs/docker/api-scan/) to perform
 Dynamic Application Security Testing (DAST). 
 
-The ZAP full scan action runs the ZAP spider against the specified target (by default with no time limit) followed by an 
-optional ajax spider scan and then a full active scan before reporting the results. The alerts will be maintained as a 
+The ZAP api scan action uses the api definition to scan before reporting the results. The alerts will be maintained as a 
 GitHub issue in the corresponding repository.
 
 **WARNING** this action will perform attacks on the target website.
@@ -14,26 +13,20 @@ ZAP will also submit forms which could result in a [large number of messages](ht
 
 ## Inputs
 
-### `target`
+### `api_definition`
 
-**Required** The URL of the web application to be scanned. This can be either a publicly available web application or a locally
-accessible URL.
+**Required** The file/URL where to find the definition of the api to be scanned. This can be either 
+a publicly available endpoint or a local repository file.
+
+### `format`
+
+**Required** You need to specify the format which is used in the api definition. The available
+options are "openapi", "soap" or "graphql".
 
 ### `docker_name`
 
 **Optional** The name of the docker file to be executed. By default the action runs the stable version of ZAP. But you can 
 configure the parameter to use the weekly builds.
-
-### `rules_file_name`
-
-**Optional** You can also specify a relative path to the rules file to ignore any alerts from the ZAP scan. Make sure to create
-the rules file inside the relevant repository. The following shows a sample rules file configuration.
-Make sure to checkout the repository (actions/checkout@v2) to provide the ZAP rules to the scan action.
-
-```tsv
-10011	IGNORE	(Cookie Without Secure Flag)
-10015	IGNORE	(Incomplete or No Cache-control and Pragma HTTP Header Set)
-``` 
 
 ### `cmd_options`
 
@@ -53,6 +46,8 @@ You do not have to create a dedicated token. Make sure to use the GitHub's defau
 **Optional** By default ZAP Docker container will fail with an [exit code](https://github.com/zaproxy/zaproxy/blob/efb404d38280dc9ecf8f88c9b0c658385861bdcf/docker/zap-full-scan.py#L31), 
 if it identifies any alerts. Set this option to `true` if you want to fail the status of the GitHub Scan if ZAP identifies any alerts during the scan.
 
+
+-- From this point on, this file is still in WIP stage
 ## Example usage
 
 ** Basic **

@@ -1,5 +1,5 @@
-name: 'OWASP ZAP Full Scan'
-description: 'Scans the web application with the OWASP ZAP Full Scan'
+name: 'OWASP ZAP API Scan'
+description: 'Scans the web application with the OWASP ZAP API Scan'
 branding:
   icon: 'zap'
   color: 'blue'
@@ -8,12 +8,12 @@ inputs:
     description: 'GitHub Token to create issues in the repository'
     required: false
     default: ${{ github.token }}
-  target:
-    description: 'Target URL'
+  api_definition:
+    description: 'Target API definition'
     required: true
-  rules_file_name:
-    description: 'Relative path of the ZAP configuration file'
-    required: false
+  format:
+    description: 'API definition format: {openapi, soap, graphql}'
+    required: true
   docker_name:
     description: 'The Docker file to be executed'
     required: true
@@ -24,7 +24,7 @@ inputs:
   issue_title:
     description: 'The title for the GitHub issue to be created'
     required: false
-    default: 'ZAP Full Scan Report'
+    default: 'ZAP API Scan Report'
   fail_action:
     description: 'The action status will be set to fail if ZAP identifies any alerts during the full scan'
     required: false

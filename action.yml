@@ -1,4 +1,4 @@
-name: 'OWASP ZAP Full Scan'
+name: 'OWASP ZAP API Scan'
 description: 'Scans the web application with the OWASP ZAP Full Scan'
 branding:
   icon: 'zap'

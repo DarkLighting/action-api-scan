@@ -3803,8 +3803,8 @@ async function run() {
         let repoName = process.env.GITHUB_REPOSITORY;
         let token = core.getInput('token');
         let docker_name = core.getInput('docker_name');
-        let target = core.getInput('target');
-        let rulesFileLocation = core.getInput('rules_file_name');
+        let api_definition = core.getInput('api_definition');
+        let format = core.getInput('format');
         let cmdOptions = core.getInput('cmd_options');
         let issueTitle = core.getInput('issue_title');
         let failAction = core.getInput('fail_action');

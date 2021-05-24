@@ -3808,6 +3808,7 @@ async function run() {
         let cmdOptions = core.getInput('cmd_options');
         let issueTitle = core.getInput('issue_title');
         let failAction = core.getInput('fail_action');
+        let plugins = [];
 
         if (!(String(failAction).toLowerCase() === 'true' || String(failAction).toLowerCase() === 'false')) {
             console.log('[WARNING]: \'fail_action\' action input should be either \'true\' or \'false\'');
